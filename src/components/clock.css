@@ -1,11 +1,17 @@
 .clock-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-grow: 1;
 }
 
 .clock {
-  font-size: 120px;
-  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(5rem, 9vw, 8rem);
+  color: #D5BDAF;
+}
+
+.date-info {
+  font-size: clamp(2rem, 1vw, 5rem);
+  color: #D5BDAF;
 }
