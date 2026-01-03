@@ -23,7 +23,6 @@ export function Clock() {
     const date = dateObj.getDate();
     const day = days[dateObj.getDay()];
     const month = months[dateObj.getMonth()];
-    console.log(dateObj.getDay());
     setDateInfo(`${day}, ${date} ${month}`);
 
     return (() => { clearInterval(timer) });

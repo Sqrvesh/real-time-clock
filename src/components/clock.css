@@ -4,14 +4,13 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  color: var(--secondary-color);
 }
 
 .clock {
   font-size: clamp(5rem, 9vw, 8rem);
-  color: #D5BDAF;
 }
 
 .date-info {
   font-size: clamp(2rem, 1vw, 5rem);
-  color: #D5BDAF;
 }
