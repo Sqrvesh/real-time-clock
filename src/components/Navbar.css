@@ -18,14 +18,16 @@
   padding-top: 15px;
   padding-bottom: 14px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease, border-bottom 0.2s ease;
 }
 
 .nav-button:hover {
   background-color: var(--hover-color);
 }
 
-.nav-selected {
+.nav-button.active {
   padding-bottom: 7px;
   border-bottom: 7px solid var(--accent-color);
 }
