@@ -4,9 +4,8 @@ import { Stopwatch } from "../components/Stopwatch";
 
 export function StopwatchPage({ darkMode, toggleDarkMode }) {
   return (
-    <div>
+    <div className="app">
       <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
-      <Link to={"/"}>GO TO HOME</Link>
       <Stopwatch />
     </div>
   );

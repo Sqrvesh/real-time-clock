@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import './Clock.css';
+import './Stopwatch.css';
 
 export function Stopwatch() {
 
@@ -11,7 +13,7 @@ export function Stopwatch() {
     return `${hours < 10 ? "0" + hours.toString() : hours}:${minutes < 10 ? "0" + minutes.toString() : minutes}:${seconds < 10 ? "0" + seconds.toString() : seconds}:${centiSeconds < 10 ? "0" + centiSeconds.toString() : centiSeconds}`;
   }
 
-  const [timeString, setTimeString] = useState("00 : 00 : 00  : 00");
+  const [timeString, setTimeString] = useState("00:00:00:00");
 
   const timeRef = useRef(0);
   const intervalRef = useRef(null);
@@ -30,11 +32,19 @@ export function Stopwatch() {
     intervalRef.current = null;
   }
 
+  function resetCounter() {
+    timeRef.current = 0;
+    setTimeString("00:00:00:00");
+  }
+
   return (
-    <div>
-      <div>{timeString}</div>
-      <button onClick={startCounter}>Start</button>
-      <button onClick={stopCounter}>Stop</button>
+    <div className="clock-container">
+      <div className="clock">{timeString}</div>
+      <div>
+        <button onClick={startCounter} className="stopwatch-button">Start</button>
+        <button onClick={stopCounter} className="stopwatch-button">Stop</button>
+        <button onClick={resetCounter} className="stopwatch-button">Reset</button>
+      </div>
     </div>
   );
 }

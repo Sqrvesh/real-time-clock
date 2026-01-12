@@ -1,0 +1,26 @@
+.stopwatch-button {
+  font-size: 22px;
+  font-family: inherit;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px 25px;
+  margin-right: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.stopwatch-button:hover {
+  /* background-color: #918076; */
+  transform: translateY(-5px) translateX(-5px);
+  box-shadow: 5px 5px black; 
+}
+
+.stopwatch-button:active {
+  transform: translateY(5px) translateX(5px);
+  box-shadow: none;
+}
+
+.clock {
+  margin-bottom: 40px;
+}
