@@ -6,7 +6,7 @@ export function StopwatchPage({ darkMode, toggleDarkMode }) {
   return (
     <div className="app">
       <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
-      <Stopwatch />
+      <Stopwatch darkMode={darkMode} />
     </div>
   );
 }
