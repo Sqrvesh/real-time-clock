@@ -6,6 +6,7 @@
   --navbar-bg: #D5BDAF;
   --navbar-text: #F5EBE0;
   --button-hover-color: #c3aa9b;
+  --toggle-on-color: #d5af87;
 }
 
 [data-theme="dark"] {
@@ -16,6 +17,7 @@
   --navbar-bg: #D6CCC2;
   --navbar-text: #605c54;
   --button-hover-color: #e4e4df;
+  --toggle-on-color: #f6f6ce;
 }
 
 
