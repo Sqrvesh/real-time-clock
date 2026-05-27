@@ -1,0 +1,60 @@
+.alarm-input {
+  font-size: 30px;
+  background: none;
+  border: none;
+  margin: 20px;
+  padding: 10px;
+}
+
+.switch {
+  width: 60px;
+  height: 34px;
+  position: relative;
+  display: inline-block;
+}
+
+.switch input {
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.slider {
+  background-color: var(--secondary-color);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  border-radius: 30px;
+  transition: background-color 0.4s ease;
+  cursor: pointer;
+}
+
+.slider::before {
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  content: "";
+  top: 4px;
+  left: 4px;
+  position: absolute;
+  background-color: var(--primary-color);
+  transition: transform 0.4s ease;
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+input:checked + .slider {
+  background-color: var(--toggle-on-color);
+}
+
+.alarm-container {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  margin-bottom: 15px;
+  width: max-content;
+}

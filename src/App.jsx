@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { ClockPage } from './pages/clockPage';
+import { useEffect, useRef, useState } from 'react';
+import { ClockPage } from './pages/ClockPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { Routes, Route } from 'react-router';
 import { AlarmPage } from './pages/AlarmPage';
 import { StopwatchPage } from './pages/StopwatchPage';
+import alarmAudio from './assets/alarm.mp3';
 import './App.css';
+import { AlarmModal } from './components/AlarmModal';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -23,12 +25,49 @@ function App() {
     setSettings(newSettings);
   }
 
+  function getTimeString(is24hour) {
+    return ((new Date()).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: !is24hour
+    }));
+  }
+
+  function getTimeStringAlarm() {
+    return ((new Date()).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }));
+  }
+
+  const [alarm, setAlarm] = useState("00:00");
+  const [isOn, setIsOn] = useState(false);
+  const [alarmRinging, setAlarmRinging] = useState(false);
+  const alarmAudioRef = useRef(new Audio(alarmAudio));
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const currTime = getTimeStringAlarm();
+      if (isOn && currTime === alarm) {
+        setAlarmRinging(true);
+        setIsOn(false);
+        alarmAudioRef.current.play();
+        alarmAudioRef.current.loop = true;
+      }
+    }, 1000)
+
+    return (() => { clearInterval(timer) });
+  }, [alarm, isOn])
+
   return (
     <div className="app" data-theme={darkMode ? "dark" : "light"}>
+      {alarmRinging && <AlarmModal setAlarmRinging={setAlarmRinging} alarmAudioRef={alarmAudioRef} is24Hour={settings.is24Hour} />}
       <Routes>
-        <Route index element={<ClockPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} is24hour={settings.is24Hour} />} />
+        <Route index element={<ClockPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} is24Hour={settings.is24Hour} getTimeString={getTimeString}/>} />
         <Route path={"/settings"} element={<SettingsPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} settings={settings} changeSettings={changeSettings} />} />
-        <Route path={"/alarm"} element={<AlarmPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+        <Route path={"/alarm"} element={<AlarmPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} alarm={alarm} setAlarm={setAlarm} isOn={isOn} setIsOn={setIsOn} />} />
         <Route path={"/stopwatch"} element={<StopwatchPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
       </Routes>
     </div>

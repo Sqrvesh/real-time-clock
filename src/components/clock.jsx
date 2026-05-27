@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
 import './Clock.css';
 
-export function Clock({ is24hour }) {
-
-  function getTimeString(is24hour) {
-    return ((new Date()).toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: !is24hour
-    }));
-  }
+export function Clock({ is24Hour, getTimeString}) {
 
   function getDateString() {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -24,18 +15,18 @@ export function Clock({ is24hour }) {
     return `${day}, ${date} ${month}`;
   }
 
-  const [time, setTime] = useState(getTimeString(is24hour));
+  const [time, setTime] = useState(getTimeString(is24Hour));
   const [dateInfo, setDateInfo] = useState(getDateString());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTime(getTimeString(is24hour));
+      setTime(getTimeString(is24Hour));
     }, 1000)
 
     setDateInfo(getDateString());
 
     return (() => { clearInterval(timer) });
-  }, [is24hour])
+  }, [is24Hour, getTimeString])
 
   return (
     <>
