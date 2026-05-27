@@ -42,24 +42,29 @@ function App() {
     }));
   }
 
-  const [alarm, setAlarm] = useState("00:00");
-  const [isOn, setIsOn] = useState(false);
+  const [alarms, setAlarms] = useState(["00:00"]);
+  const [isOn, setIsOn] = useState([false]);
+
   const [alarmRinging, setAlarmRinging] = useState(false);
   const alarmAudioRef = useRef(new Audio(alarmAudio));
   
   useEffect(() => {
     const timer = setInterval(() => {
       const currTime = getTimeStringAlarm();
-      if (isOn && currTime === alarm) {
-        setAlarmRinging(true);
-        setIsOn(false);
-        alarmAudioRef.current.play();
-        alarmAudioRef.current.loop = true;
+      for (let i = 0; i < alarms.length; i++) {
+        if (alarms[i] === currTime && isOn[i]) {
+          setAlarmRinging(true);
+          let isOnCopy = [...isOn];
+          isOnCopy[i] = false;
+          setIsOn(isOnCopy);
+          alarmAudioRef.current.play();
+          alarmAudioRef.current.loop = true;
+        }
       }
-    }, 1000)
+    }, 10000)
 
     return (() => { clearInterval(timer) });
-  }, [alarm, isOn])
+  }, [alarms, isOn])
 
   return (
     <div className="app" data-theme={darkMode ? "dark" : "light"}>
@@ -67,7 +72,7 @@ function App() {
       <Routes>
         <Route index element={<ClockPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} is24Hour={settings.is24Hour} getTimeString={getTimeString}/>} />
         <Route path={"/settings"} element={<SettingsPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} settings={settings} changeSettings={changeSettings} />} />
-        <Route path={"/alarm"} element={<AlarmPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} alarm={alarm} setAlarm={setAlarm} isOn={isOn} setIsOn={setIsOn} />} />
+        <Route path={"/alarm"} element={<AlarmPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} alarms={alarms} setAlarms={setAlarms} isOn={isOn} setIsOn={setIsOn} />} />
         <Route path={"/stopwatch"} element={<StopwatchPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
       </Routes>
     </div>

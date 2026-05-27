@@ -22,13 +22,13 @@ export function SettingsPage({ darkMode, toggleDarkMode, settings, changeSetting
           <div className="settings-text">24 Hour format</div>
         </div>
 
-        <div className="settings-container">
+        {/* <div className="settings-container">
           <label className="switch">
             <input type="checkbox" />
             <span className="slider" />
           </label>
           <div className="settings-text">Placeholder</div>
-        </div>
+        </div> */}
 
       </div>
     </div>

@@ -2,7 +2,8 @@
   font-size: 30px;
   background: none;
   border: none;
-  margin: 20px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   padding: 10px;
 }
 
@@ -55,6 +56,55 @@ input:checked + .slider {
   display: flex;
   align-items: center;
   column-gap: 15px;
-  margin-bottom: 15px;
   width: max-content;
+}
+
+.add-alarm {
+  width: max-content;
+  font-size: 20px;
+  font-family: inherit;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  margin-left: 22px;
+  margin-top: 22px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.179) 0 1px 2px 0;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.add-alarm:hover {
+  transform: translateY(-2px);
+  background-color: var(--button-hover-color);
+  box-shadow: rgba(0, 0, 0, 0.468) 0 2px 3px 0;
+}
+
+.add-alarm:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
+
+.alarm-delete {
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  margin-left: 22px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.179) 0 1px 2px 0;
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.alarm-delete:hover {
+  transform: translateY(-2px);
+  background-color: var(--button-hover-color);
+  box-shadow: rgba(0, 0, 0, 0.468) 0 2px 3px 0;
+}
+
+.alarm-delete:active {
+  transform: translateY(0px);
+  box-shadow: none;
 }

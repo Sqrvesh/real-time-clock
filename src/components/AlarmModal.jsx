@@ -23,7 +23,7 @@ export function AlarmModal({ setAlarmRinging, alarmAudioRef, is24Hour}) {
           <div>Alarm</div>
           <div className="modal-close" onClick={closeAlarmModal}>X</div>
         </div>
-        <div>Its {getAlarmTime(is24Hour)}</div>
+        <div>Its {getAlarmTime(is24Hour)}!</div>
       </div>
     </div>
   )
